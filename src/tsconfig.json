@@ -2,6 +2,7 @@
     "files": [],
     "include": [],
     "references": [
+        { "path": "./async" },
         { "path": "./tsc" },
         { "path": "./tsserver" },
         { "path": "./typingsInstaller" },

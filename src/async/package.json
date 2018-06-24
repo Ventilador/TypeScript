@@ -1,0 +1,32 @@
+{
+    "name": "typescript-async",
+    "author": "Microsoft Corp.",
+    "homepage": "http://typescriptlang.org/",
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "description": "TypeScript is a language for application scale JavaScript development",
+    "keywords": [
+        "TypeScript",
+        "Microsoft",
+        "compiler",
+        "language",
+        "javascript"
+    ],
+    "bugs": {
+        "url": "https://github.com/Microsoft/TypeScript/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/TypeScript.git"
+    },
+    "main": "./index.js",
+    "typings": "./index.d.ts",
+    "engines": {
+        "node": ">=4.2.0"
+    },
+    "browser": {
+        "fs": false,
+        "os": false,
+        "path": false
+    }
+}

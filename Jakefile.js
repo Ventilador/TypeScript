@@ -54,6 +54,7 @@ const Paths = {};
 Paths.lkg = "lib";
 Paths.lkgCompiler = "lib/tsc.js";
 Paths.built = "built";
+Paths.async = "async";
 Paths.builtLocal = "built/local";
 Paths.builtLocalCompiler = "built/local/tsc.js";
 Paths.builtLocalTSServer = "built/local/tsserver.js";
@@ -62,6 +63,7 @@ Paths.typesMapOutput = "built/local/typesMap.json";
 Paths.servicesFile = "built/local/typescriptServices.js";
 Paths.servicesDefinitionFile = "built/local/typescriptServices.d.ts";
 Paths.typescriptDefinitionFile = "built/local/typescript.d.ts";
+Paths.asyncDefinitionFile = "async/index.d.ts";
 Paths.typescriptStandaloneDefinitionFile = "built/local/typescript_standalone.d.ts";
 Paths.tsserverLibraryDefinitionFile = "built/local/tsserverlibrary.d.ts";
 Paths.baselines = {};
@@ -271,6 +273,7 @@ task(TaskNames.buildRules, [], function () {
 desc("Cleans the compiler output, declare files, and tests");
 task(TaskNames.clean, function () {
     jake.rmRf(Paths.built);
+    jake.rmRf(Paths.async);
 });
 
 desc("Generates the LCG file for localization");
@@ -346,11 +349,13 @@ file(Paths.servicesDefinitionFile, [TaskNames.coreBuild], function() {
     fs.writeFileSync(configFilePath, JSON.stringify(config, undefined, 2));
     tsbuild(configFilePath, false, () => {
         const servicesContent = readFileSync(Paths.servicesDefinitionFile);
+        const asyncDefinitionFileContent = readFileSync(Paths.asyncDefinitionFile)  + "\r\nexport = TsAsync";
         const servicesContentWithoutConstEnums = removeConstModifierFromEnumDeclarations(servicesContent);
         fs.writeFileSync(Paths.servicesDefinitionFile, servicesContentWithoutConstEnums);
-
+        
         // Also build typescript.d.ts
         fs.writeFileSync(Paths.typescriptDefinitionFile, servicesContentWithoutConstEnums + "\r\nexport = ts", { encoding: "utf-8" });
+        fs.writeFileSync(Paths.asyncDefinitionFile, asyncDefinitionFileContent, { encoding: "utf-8" });
         // And typescript_standalone.d.ts
         fs.writeFileSync(Paths.typescriptStandaloneDefinitionFile, servicesContentWithoutConstEnums.replace(/declare (namespace|module) ts(\..+)? \{/g, 'declare module "typescript" {'), { encoding: "utf-8"});
 

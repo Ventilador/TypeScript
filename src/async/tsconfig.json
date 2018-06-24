@@ -1,0 +1,52 @@
+
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "outFile": "../../async/index.js",
+        "types": [
+            "node"
+        ],
+        "lib": [
+            "es5",
+            "es6"
+        ]
+    },
+    "files": [
+        "Client/index.ts",
+		"Client/Messages/index.ts",
+		"Client/Messages/init.ts",
+		"Client/Messages/processFile.ts",
+		"Connector/index.ts",
+		"definitions/events.ts",
+		"definitions/fs.ts",
+		"definitions/querystring.ts",
+		"definitions/stream.ts",
+		"definitions/types.ts",
+		"definitions/typescript.ts",
+		"definitions/url.ts",
+		"index.ts",
+		"Server/Classes/Directory.ts",
+		"Server/Classes/FileSystem.ts",
+		"Server/Classes/Host.ts",
+		"Server/Classes/Module.ts",
+		"Server/index.ts",
+		"Server/Messages/index.ts",
+		"Server/Messages/init.ts",
+		"Server/Messages/processFile.ts",
+		"Server/Plugins/CollectExternalModuleReferences.ts",
+		"Server/Plugins/GenerateSourceFile.ts",
+		"Server/Plugins/index.ts",
+		"Server/Plugins/LoadNodeModules/definition.d.ts",
+		"Server/Plugins/LoadNodeModules/FindDirectory.ts",
+		"Server/Plugins/LoadNodeModules/index.ts",
+		"Server/Plugins/LoadNodeModules/LocateMainFile.ts",
+		"Server/Plugins/LoadNodeModules/TryGetFromMemory.ts",
+		"Server/Plugins/ResolveDependencies.ts",
+		"Server/Plugins/TranspileFile.ts",
+		"Server/Plugins/UpdateHostFile.ts",
+		"utils/BufferConnector.ts",
+		"utils/Collections.ts",
+		"utils/Waterfall.ts"
+    ]
+}
+                    
