@@ -41,7 +41,9 @@ loop(folder, files)
 {
     "extends": "../tsconfig-base",
     "compilerOptions": {
-        "outFile": "../../async/index.js",
+        "outDir": "../../async",
+        "module": "commonjs",
+        "declaration": true,
         "types": [
             "node"
         ],

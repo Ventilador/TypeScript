@@ -2,7 +2,9 @@
 {
     "extends": "../tsconfig-base",
     "compilerOptions": {
-        "outFile": "../../async/index.js",
+        "outDir": "../../async",
+        "module": "commonjs",
+        "declaration": true,
         "types": [
             "node"
         ],
@@ -17,13 +19,8 @@
 		"Client/Messages/init.ts",
 		"Client/Messages/processFile.ts",
 		"Connector/index.ts",
-		"definitions/events.ts",
 		"definitions/fs.ts",
-		"definitions/querystring.ts",
-		"definitions/stream.ts",
-		"definitions/types.ts",
-		"definitions/typescript.ts",
-		"definitions/url.ts",
+		"definitions/index.ts",
 		"index.ts",
 		"Server/Classes/Directory.ts",
 		"Server/Classes/FileSystem.ts",
@@ -44,9 +41,9 @@
 		"Server/Plugins/ResolveDependencies.ts",
 		"Server/Plugins/TranspileFile.ts",
 		"Server/Plugins/UpdateHostFile.ts",
+		"Server/Waterfall.ts",
 		"utils/BufferConnector.ts",
-		"utils/Collections.ts",
-		"utils/Waterfall.ts"
+		"utils/Collections.ts"
     ]
 }
                     

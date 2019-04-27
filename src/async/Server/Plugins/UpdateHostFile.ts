@@ -1,8 +1,9 @@
-// import { Waterfall } from "../../utils/waterfall";
+import { IRequestContext } from "../../definitions";
+import { Waterfall } from "../Waterfall";
 
-// export function UpdateHostFile() {
-//     return function UpdateHostFile(this: Waterfall<IRequestContext>, request: IRequestContext) {
-//         this.host.writeFile(request.fileName, request.data);
-//         this.next(null, request);
-//     };
-// }
+export function UpdateHostFile() {
+    return function UpdateHostFile(this: Waterfall<IRequestContext>, request: IRequestContext) {
+        // this.host.writeFile(request.fileName, request.data);
+        this.next(undefined, request);
+    };
+}

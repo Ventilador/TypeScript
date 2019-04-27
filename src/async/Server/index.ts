@@ -1,28 +1,31 @@
-namespace TsAsync.Server {
-    const EventEmitter = require("events").EventEmitter;
-    export class HandlerClass extends EventEmitter {
-        public ts: ts = NULL;
-        public methods: Function[];
-        public connector = Connector(process.stdin as any, process.stdout as any);
-        constructor() {
-            super();
-            const manager = ServerMessageManager(this);
-            this.connector.onData((chunk: Buffer) => {
-                Parser.fromBuffer(chunk, manager);
-            });
-        }
-
-        public process(fileName: string, content: string) {
-            this.emit("drop", {
-                fileName,
-                data: content,
-                output: "",
-                sourceFile: NULL,
-                sourceMap: "",
-                dependencies: NULL
-            });
-        }
+import * as ts from "typescript";
+import { EventEmitter } from "events";
+import { Connector } from "../Connector";
+import { Parser } from "../utils/BufferConnector";
+import { ServerMessageManager } from "./Messages";
+import { CustomBuffer } from "../definitions";
+export class HandlerClass extends EventEmitter {
+    public ts: typeof ts = undefined as any;
+    public methods: Function[];
+    public connector = Connector(process.stdin as any, process.stdout as any);
+    constructor() {
+        super();
+        const manager = ServerMessageManager(this);
+        this.connector.onData((chunk: CustomBuffer) => {
+            Parser.fromBuffer(chunk, manager);
+        });
     }
-    /*@internal*/
-    export const serverHandler = new HandlerClass();
+
+    public process(fileName: string, content: string) {
+        this.emit("drop", {
+            fileName,
+            data: content,
+            output: "",
+            sourceFile: undefined,
+            sourceMap: "",
+            dependencies: undefined
+        });
+    }
 }
+/*@internal*/
+export const serverHandler = new HandlerClass();
